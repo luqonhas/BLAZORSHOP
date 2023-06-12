@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BlazorShop.Infra.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class BlazorShopBD1 : Migration
+    public partial class BlazorDBV1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -140,6 +140,12 @@ namespace BlazorShop.Infra.Data.Migrations
                 name: "IX_Users_Email",
                 table: "Users",
                 column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_UserName",
+                table: "Users",
+                column: "UserName",
                 unique: true);
         }
 

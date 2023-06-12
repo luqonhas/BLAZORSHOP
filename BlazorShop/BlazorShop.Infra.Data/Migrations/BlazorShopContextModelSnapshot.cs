@@ -201,6 +201,9 @@ namespace BlazorShop.Infra.Data.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
+                    b.HasIndex("UserName")
+                        .IsUnique();
+
                     b.ToTable("Users", (string)null);
                 });
 

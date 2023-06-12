@@ -1,3 +1,4 @@
+using BlazorShop.Domain.Handlers.Authentications;
 using BlazorShop.Domain.Handlers.Carts;
 using BlazorShop.Domain.Handlers.Categories;
 using BlazorShop.Domain.Handlers.ItemsCart;
@@ -8,6 +9,7 @@ using BlazorShop.Infra.Data.Contexts;
 using BlazorShop.Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using System.Net;
@@ -29,9 +31,35 @@ builder.Services.AddCors(options =>
         builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 });
 
+// Adding Swagger
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "BlazorShop.Api", Version = "v1" });
+
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "JWT Authorization header using the Bearer scheme.\r\n\r\n Enter 'Bearer'[space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
 });
 
 // Connecting DB
@@ -39,6 +67,29 @@ builder.Services.AddDbContext<BlazorShopContext>(x =>
 {
     x.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddAuthentication(options =>
+{
+    // Authentications
+    options.DefaultAuthenticateScheme = "JwtBearer";
+    options.DefaultChallengeScheme = "JwtBearer";
+})
+.AddJwtBearer("JwtBearer", options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        // Validations
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("blazorShop-authentication-key")),
+        ClockSkew = TimeSpan.FromMinutes(30),
+        ValidIssuer = "blazorShop",
+        ValidAudience = "blazorShop"
+    };
+});
+
+
 
 builder.Services.AddHttpsRedirection(options =>
 {
@@ -49,7 +100,6 @@ builder.Services.AddHttpsRedirection(options =>
 
 
 // Independency Injections:
-
 #region Users
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 
@@ -102,6 +152,7 @@ builder.Services.AddTransient<CreateCartHandle, CreateCartHandle>();
 builder.Services.AddTransient<DeleteCartHandle, DeleteCartHandle>();
 
 // Queries:
+builder.Services.AddTransient<ListCartHandle, ListCartHandle>();
 builder.Services.AddTransient<SearchCartByIdHandle, SearchCartByIdHandle>();
 builder.Services.AddTransient<SearchCartByUserIdHandle, SearchCartByUserIdHandle>();
 #endregion
@@ -118,6 +169,14 @@ builder.Services.AddTransient<DeleteItemCartHandle, DeleteItemCartHandle>();
 // Queries:
 builder.Services.AddTransient<ListItemCartHandle, ListItemCartHandle>();
 builder.Services.AddTransient<SearchItemCartByIdHandle, SearchItemCartByIdHandle>();
+#endregion
+
+
+
+#region Authentications
+// Commands:
+builder.Services.AddTransient<LoginEmailHandle, LoginEmailHandle>();
+builder.Services.AddTransient<LoginUserNameHandle, LoginUserNameHandle>();
 #endregion
 
 

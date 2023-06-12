@@ -29,7 +29,8 @@ namespace BlazorShop.Infra.Data.Contexts
             modelBuilder.Entity<User>().Property(x => x.UserName).HasColumnType("VARCHAR(50)");
             modelBuilder.Entity<User>().Property(x => x.UserName).HasMaxLength(50);
             modelBuilder.Entity<User>().Property(x => x.UserName).IsRequired();
-            
+            modelBuilder.Entity<User>().HasIndex(x => x.UserName).IsUnique();
+
             // Adding Email
             modelBuilder.Entity<User>().Property(x => x.Email).HasColumnType("VARCHAR(250)");
             modelBuilder.Entity<User>().Property(x => x.Email).HasMaxLength(250);

@@ -27,6 +27,7 @@ namespace BlazorShop.Domain.Entities
             {
                 UserName = userName;
                 Email = email;
+                //Password = Shared.Utils.Password.Encrypt(password); // Gerar o hash da senha
                 Password = password;
                 UserType = userType;
                 ModifyDate = null;

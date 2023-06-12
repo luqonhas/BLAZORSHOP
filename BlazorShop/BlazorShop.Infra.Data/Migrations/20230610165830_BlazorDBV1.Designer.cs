@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorShop.Infra.Data.Migrations
 {
     [DbContext(typeof(BlazorShopContext))]
-    [Migration("20230609183239_BlazorShopBD1")]
-    partial class BlazorShopBD1
+    [Migration("20230610165830_BlazorDBV1")]
+    partial class BlazorDBV1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -202,6 +202,9 @@ namespace BlazorShop.Infra.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("UserName")
                         .IsUnique();
 
                     b.ToTable("Users", (string)null);

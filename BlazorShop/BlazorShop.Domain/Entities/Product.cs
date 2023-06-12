@@ -7,7 +7,7 @@ namespace BlazorShop.Domain.Entities
 {
     public class Product : Base
     {
-        public Product(string name, string description, string imageURL, decimal price, int quantity)
+        public Product(string name, string description, string imageURL, decimal price, int quantity, Guid idCategory)
         {
             AddNotifications(
                 new Contract<Notification>()
@@ -17,6 +17,7 @@ namespace BlazorShop.Domain.Entities
                     .IsNotNull(imageURL, "imageURL", "The 'imageURL' field cannot be null!")
                     .IsNotNull(price, "price", "The 'price' field cannot be null!")
                     .IsNotNull(quantity, "quantity", "The 'quantity' field cannot be null!")
+                    .IsNotEmpty(idCategory, "idCategory", "The 'idCategory' field cannot be empty")
             );
 
             if (IsValid)
@@ -27,6 +28,7 @@ namespace BlazorShop.Domain.Entities
                 Price = price;
                 Quantity = quantity;
                 ModifyDate = null;
+                IdCategory = idCategory;
             }
         }
 

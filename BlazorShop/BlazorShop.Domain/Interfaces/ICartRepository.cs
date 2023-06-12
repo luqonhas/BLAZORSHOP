@@ -16,6 +16,7 @@ namespace BlazorShop.Domain.Interfaces
 
 
         // Queries:
+        IEnumerable<Cart> List();
         Cart SearchById(Guid? id);
         Cart SearchByUserId(Guid? id);
     }

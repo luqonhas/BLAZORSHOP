@@ -36,6 +36,14 @@ namespace BlazorShop.Infra.Data.Repositories
 
 
         // Queries:
+        public IEnumerable<Cart> List()
+        {
+            return _ctx.Carts
+                .AsNoTracking()
+                //.Include(x => x.ItemsCart)
+                .ToList();
+        }
+
         public Cart SearchById(Guid? id)
         {
             return _ctx.Carts.FirstOrDefault(x => x.Id == id);

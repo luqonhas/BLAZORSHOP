@@ -14,16 +14,6 @@ namespace BlazorShop.Domain.Commands.Products
     {
         public CreateProductCommand() { }
 
-        public CreateProductCommand(string name, string description, string imageURL, decimal price, int quantity, Guid idCategory)
-        {
-            Name = name;
-            Description = description;
-            ImageURL = imageURL;
-            Price = price;
-            Quantity = quantity;
-            IdCategory = idCategory;
-        }
-
         public string Name { get; set; }
         public string Description { get; set; }
         public string ImageURL { get; set; }

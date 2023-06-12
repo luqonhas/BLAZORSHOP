@@ -3,8 +3,10 @@ using BlazorShop.Domain.Handlers.Users;
 using BlazorShop.Domain.Queries.Users;
 using BlazorShop.Shared.Commands;
 using BlazorShop.Shared.Queries;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace BlazorShop.Api.Controllers
 {

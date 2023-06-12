@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorShop.Shared", "BlazorShop.Shared\BlazorShop.Shared.csproj", "{E410162C-53CE-4E28-917E-A212A0B74391}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorShop.Shared", "BlazorShop.Shared\BlazorShop.Shared.csproj", "{E410162C-53CE-4E28-917E-A212A0B74391}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorShop.Domain", "BlazorShop.Domain\BlazorShop.Domain.csproj", "{87CD5E58-C4F5-44B7-8E3F-CB3DDB682647}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorShop.Domain", "BlazorShop.Domain\BlazorShop.Domain.csproj", "{87CD5E58-C4F5-44B7-8E3F-CB3DDB682647}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorShop.Infra.Data", "BlazorShop.Infra.Data\BlazorShop.Infra.Data.csproj", "{75437685-21AD-4A23-B67D-1B20DFCF86AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorShop.Infra.Data", "BlazorShop.Infra.Data\BlazorShop.Infra.Data.csproj", "{75437685-21AD-4A23-B67D-1B20DFCF86AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorShop.Api", "BlazorShop.Api\BlazorShop.Api.csproj", "{81A9E37B-6520-4B42-825E-EEAF80C04E58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorShop.Api", "BlazorShop.Api\BlazorShop.Api.csproj", "{81A9E37B-6520-4B42-825E-EEAF80C04E58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorShop.Web", "BlazorShop.Web\BlazorShop.Web.csproj", "{AD951C45-B5F9-4DE2-B977-E8B232A234D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{81A9E37B-6520-4B42-825E-EEAF80C04E58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81A9E37B-6520-4B42-825E-EEAF80C04E58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81A9E37B-6520-4B42-825E-EEAF80C04E58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD951C45-B5F9-4DE2-B977-E8B232A234D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD951C45-B5F9-4DE2-B977-E8B232A234D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD951C45-B5F9-4DE2-B977-E8B232A234D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD951C45-B5F9-4DE2-B977-E8B232A234D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

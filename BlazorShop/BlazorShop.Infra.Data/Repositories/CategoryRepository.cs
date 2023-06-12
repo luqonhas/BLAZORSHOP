@@ -41,6 +41,7 @@ namespace BlazorShop.Infra.Data.Repositories
         {
             return _ctx.Categories
                 .AsNoTracking()
+                //.Include(x => x.Products)
                 .ToList();
         }
 

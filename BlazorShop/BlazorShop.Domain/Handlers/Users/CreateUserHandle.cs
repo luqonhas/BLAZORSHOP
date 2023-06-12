@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlazorShop.Shared.Utils;
 
 namespace BlazorShop.Domain.Handlers.Users
 {
@@ -34,14 +35,23 @@ namespace BlazorShop.Domain.Handlers.Users
                 return new GenericCommandResult(false, "Correctly enter user data", command.Notifications);
             }
 
-            var emailExists = _userRepository.SearchByEmail(command.Email);
+            var emailExists = _userRepository.SearchByEmail(command.Email.ToLower());
 
             if (emailExists != null)
             {
                 return new GenericCommandResult(false, "Existing e-mail", "Enter another e-mail");
             }
 
-            User newUser = new User(command.UserName, command.Email, command.Password, command.UserType);
+            bool SpacesUserName = command.UserName.Contains(" ");
+
+            if (SpacesUserName)
+            {
+                return new GenericCommandResult(false, "UserName cannot have spaces", "Enter another userName");
+            }
+
+            string encryptedPassword = Password.Encrypt(command.Password);
+
+            User newUser = new User(command.UserName.ToLower(), command.Email.ToLower(), encryptedPassword, command.UserType);
 
             if (!newUser.IsValid)
             {
@@ -61,8 +71,6 @@ namespace BlazorShop.Domain.Handlers.Users
 
             if (cartId == Guid.Empty)
             {
-                // Handling the case where cart creation failed
-                // You can return an appropriate error message or perform additional actions here
                 return new GenericCommandResult(false, "Failed to create cart", "Cart creation failed");
             }
 

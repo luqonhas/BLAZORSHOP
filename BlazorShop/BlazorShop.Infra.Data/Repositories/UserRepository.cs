@@ -41,12 +41,18 @@ namespace BlazorShop.Infra.Data.Repositories
         {
             return _ctx.Users
                 .AsNoTracking()
+                //.Include(x => x.Carts)
                 .ToList();
         }
 
         public User SearchByEmail(string email)
         {
             return _ctx.Users.FirstOrDefault(x => x.Email == email);
+        }
+
+        public User SearchByUserName(string userName)
+        {
+            return _ctx.Users.FirstOrDefault(x => x.UserName == userName);
         }
 
         public User SearchById(Guid? id)

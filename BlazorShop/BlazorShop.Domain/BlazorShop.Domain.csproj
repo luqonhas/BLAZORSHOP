@@ -10,8 +10,4 @@
     <ProjectReference Include="..\BlazorShop.Shared\BlazorShop.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Handlers\Authentications\" />
-  </ItemGroup>
-
 </Project>
