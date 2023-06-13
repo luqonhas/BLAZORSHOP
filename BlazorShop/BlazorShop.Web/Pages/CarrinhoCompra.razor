@@ -1,4 +1,4 @@
-﻿@page "/CarrinhoCompra"
+﻿@*@page "/CarrinhoCompra"
 @inject IJSRuntime Js;
 
 @if (CarrinhoCompraItens == null && MensagemErro == null)
@@ -189,3 +189,4 @@ else
         CarrinhoCompraService.RaiseEventOnCarrinhoCompraChanged(QuantidadeTotal);
     }
 }
+*@

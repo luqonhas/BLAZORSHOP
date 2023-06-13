@@ -1,4 +1,4 @@
-﻿@page "/produtos"
+﻿@*@page "/produtos"
 @inject IProdutoService produtoService
 
 @if (Produtos == null)
@@ -71,3 +71,4 @@ else
         await GerenciaCarrinhoItensLocalStorageService.RemoveCollection();
     }
 }
+*@
